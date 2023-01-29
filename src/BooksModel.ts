@@ -9,10 +9,10 @@ export interface IBook {
   
   // 2. Create a Schema corresponding to the document interface.
   const booksSchema = new Schema<IBook>({
-    title: { type: String, required: true },
-    isbn: { type: String, required: true },
-    authors: { type: String, required: true },
-    description: { type: String, required: true },
+    title: { type: String, default: "not available" },
+    isbn: { type: String, default: "not available" },
+    authors: { type: String, default: "not available" },
+    description: { type: String,default: "not available" },
   });
   
   // 3. Create a Model.
