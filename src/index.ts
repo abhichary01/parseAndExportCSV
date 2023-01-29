@@ -46,20 +46,20 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //app.use(express.static(path.resolve(__dirname, 'public')))
-app.get('/', (req, res) => {
-  Books.find((err: any, data: string) => {
-        if (err) {
-          console.log(err)
-        } else {
-            if (data != '') {
-                res.json(data);
-            } else {
-                console.log("no data");
-                res.json(data);
-            }
-        }
-    })
-})
+// app.get('/', (req, res) => {
+//   Books.find((err: any, data: string) => {
+//         if (err) {
+//           console.log(err)
+//         } else {
+//             if (data != '') {
+//                 res.json(data);
+//             } else {
+//                 console.log("no data");
+//                 res.json(data);
+//             }
+//         }
+//     })
+// })
 let bookData = [];
 app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
   csvtojson()
