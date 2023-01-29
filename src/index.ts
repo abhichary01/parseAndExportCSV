@@ -44,7 +44,7 @@ const fileFilter = (req: any, file: { mimetype: string; }, cb: (arg0: null, arg1
   }
 };
 const uploads = multer({ storage: storage, fileFilter: fileFilter })
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, 'public')))
