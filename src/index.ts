@@ -81,7 +81,6 @@ app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
       Books.insertMany(response, (err: any, data: any) => {
         if (err) {
           console.log(err)
-          res.status (400).send ({ message: 'Could not upload the file!', status : 0 })
         } else {
           console.log("data inserted", data);
         }
