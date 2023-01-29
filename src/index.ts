@@ -98,10 +98,10 @@ app.get('/getallbooks', async (req, res) => {
 
 app.get('/getbooks/query', async (req, res) => {
   var parameters : any = {};
-  if(req.query.authors !== ''&&undefined){
+  if(req.query.authors !== ''&&undefined&&null){
     parameters['authors'] = req.query.authors
   }
-  if(req.query.isbn !== ''){
+  if(req.query.isbn !== ''&&undefined&&null){
     let ISBN = (req.query.isbn as string).replace(/(\d{4})(?=\d)/g, "$1-")
     parameters['isbn'] = ISBN;
   }
