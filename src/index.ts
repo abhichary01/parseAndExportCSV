@@ -14,7 +14,7 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: "http://localhost:4200"
+  origin: process.env.CLIENTURL
 };
 main().catch(err => console.log(err));
 
