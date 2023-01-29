@@ -63,8 +63,9 @@ app.get('/', (req, res) => {
 })
 let bookData = [];
 app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
+  res.header("Access-Control-Allow-Origin", "*");
   csvtojson()
-  
+
     .fromFile(req.file.path)
     .then((response: any) => {
       // for (var x = 0; x < response; x++) {
@@ -95,6 +96,7 @@ app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
 })
 
 app.get('/getallbooks', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const result = await Books.find()
   res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -103,6 +105,7 @@ app.get('/getallbooks', async (req, res) => {
 });
 
 app.get('/getbooks/query', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   var parameters : any = {};
   if(req.query.authors !== ''&&undefined&&null){
     parameters['authors'] = req.query.authors
@@ -127,6 +130,7 @@ app.get('/getbooks/query', async (req, res) => {
 });
 
 app.post('/insert', async (req: any, res: any) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const result = await Books.create(req.body)
   res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -135,6 +139,7 @@ app.post('/insert', async (req: any, res: any) => {
 });
 
 app.post('/knight/moves', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const {x, y} = req.body;
   let knight = new knightMovement(x, y);
   res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
