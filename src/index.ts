@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: process.env.CLIENTURL||'http://localhost:4200'|| 'https://resilient-strudel-afe4bd.netlify.app/'
+  origin: process.env.CLIENTURL||'https://csvuploadandexport.vercel.app/'
 };
 main().catch(err => console.log(err));
 
