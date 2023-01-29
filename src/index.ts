@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: process.env.CLIENTURL||'https://raftlabsassignment.onrender.com'
+  origin: process.env.CLIENTURL||'localhost:4200'|| 'https://raftlabs-frontend.onrender.com'
 };
 main().catch(err => console.log(err));
 
