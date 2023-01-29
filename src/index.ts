@@ -98,13 +98,14 @@ app.get('/getallbooks', async (req, res) => {
 
 app.get('/getbooks/query', async (req, res) => {
   var parameters : any = {};
-  if(req.query.authors !== ''){
+  if(req.query.authors !== ''&&undefined){
     parameters['authors'] = req.query.authors
   }
   if(req.query.isbn !== ''){
     let ISBN = (req.query.isbn as string).replace(/(\d{4})(?=\d)/g, "$1-")
     parameters['isbn'] = ISBN;
   }
+  console.log("para",parameters)
   var result: any = await Books.find(parameters)
   const objects = result.map((book: { title: any; isbn: any; authors: any; description: any; __v: any; }) => {
     const {  title, isbn, authors, description} = book;
