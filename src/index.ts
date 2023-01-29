@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: process.env.CLIENTURL||'https://csvuploadandexport.vercel.app/'
+  origin: process.env.CLIENTURL||'https://csvuploadandexport.vercel.app'
 };
 main().catch(err => console.log(err));
 
