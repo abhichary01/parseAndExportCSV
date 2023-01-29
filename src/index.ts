@@ -15,7 +15,8 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: process.env.CLIENTURL||'https://csvuploadandexport-ym64.vercel.app'
+  // origin: process.env.CLIENTURL||'https://csvuploadandexport-ym64.vercel.app'
+  origin: '*'
 };
 main().catch(err => console.log(err));
 
@@ -139,6 +140,7 @@ app.post('/knight/moves', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   const {x, y} = req.body;
   let knight = new knightMovement(x, y);
+  res.header("Access-Control-Allow-Origin", "https://raftserver.onrender.com/knight/moves");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send(knight.findPossibleMoves());
