@@ -14,9 +14,9 @@ import path from 'path';
 const app = express();
 dotenv.config();
 
-var corsOptions = {
-  origin: process.env.CLIENTURL||'https://csvuploadandexport.vercel.app'
-};
+// var corsOptions = {
+//   origin: process.env.CLIENTURL||'https://csvuploadandexport.vercel.app'
+// };
 main().catch(err => console.log(err));
 
 async function main() {
@@ -43,7 +43,7 @@ const fileFilter = (req: any, file: { mimetype: string; }, cb: (arg0: null, arg1
   }
 };
 const uploads = multer({ storage: storage, fileFilter: fileFilter })
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, 'public')))
@@ -139,6 +139,7 @@ app.post('/knight/moves', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   const {x, y} = req.body;
   let knight = new knightMovement(x, y);
+  //res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send(knight.findPossibleMoves());
