@@ -8,6 +8,7 @@ import Books from './BooksModel'
 import * as json2csv from 'json2csv';
 import * as dotenv from 'dotenv';
 import knightMovement from './chessKnight/knightMovement'
+import path from 'path';
 
 
 const app = express();
@@ -45,21 +46,21 @@ const uploads = multer({ storage: storage, fileFilter: fileFilter })
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//app.use(express.static(path.resolve(__dirname, 'public')))
-// app.get('/', (req, res) => {
-//   Books.find((err: any, data: string) => {
-//         if (err) {
-//           console.log(err)
-//         } else {
-//             if (data != '') {
-//                 res.json(data);
-//             } else {
-//                 console.log("no data");
-//                 res.json(data);
-//             }
-//         }
-//     })
-// })
+app.use(express.static(path.resolve(__dirname, 'public')))
+app.get('/', (req, res) => {
+  Books.find((err: any, data: string) => {
+        if (err) {
+          console.log(err)
+        } else {
+            if (data != '') {
+                res.json(data);
+            } else {
+                console.log("no data");
+                res.json(data);
+            }
+        }
+    })
+})
 let bookData = [];
 app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
   csvtojson()
