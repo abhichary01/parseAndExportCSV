@@ -86,6 +86,9 @@ app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
           console.log("data inserted", data);
         }
       })
+      res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
       res.send({ message: "succesfully uploaded data", status : 1 });
     })
 
@@ -93,6 +96,9 @@ app.post('/upload', uploads.single('csvFile'), (req: any, res: any) => {
 
 app.get('/getallbooks', async (req, res) => {
   const result = await Books.find()
+  res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({"res": result});
 });
 
@@ -113,18 +119,27 @@ app.get('/getbooks/query', async (req, res) => {
   const jsonData = JSON.parse(JSON.stringify(objects));
 
   const csv = json2csv.parse(jsonData);
+  res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   // fs.writeFileSync(__dirname+`/output/${req.query.authors||req.query.email||req.query.isbn}.csv`, csv);
   res.send({ "res": jsonData });
 });
 
 app.post('/insert', async (req: any, res: any) => {
   const result = await Books.create(req.body)
+  res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({"res": result});
 });
 
 app.post('/knight/moves', (req, res) => {
   const {x, y} = req.body;
   let knight = new knightMovement(x, y);
+  res.header("Access-Control-Allow-Origin", "https://csvuploadandexport-ym64.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send(knight.findPossibleMoves());
 });
 
