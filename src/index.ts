@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-  origin: process.env.CLIENTURL||'localhost:4200'|| 'https://raftlabs-frontend.onrender.com'
+  origin: process.env.CLIENTURL||'http://localhost:4200'|| 'https://raftlabs-frontend.onrender.com'
 };
 main().catch(err => console.log(err));
 
@@ -105,7 +105,6 @@ app.get('/getbooks/query', async (req, res) => {
     let ISBN = (req.query.isbn as string).replace(/(\d{4})(?=\d)/g, "$1-")
     parameters['isbn'] = ISBN;
   }
-  console.log("para",parameters)
   var result: any = await Books.find(parameters)
   const objects = result.map((book: { title: any; isbn: any; authors: any; description: any; __v: any; }) => {
     const {  title, isbn, authors, description} = book;
