@@ -9,6 +9,7 @@ import * as json2csv from 'json2csv';
 import * as dotenv from 'dotenv';
 import knightMovement from './chessKnight/knightMovement'
 import path from 'path';
+import * as fs from 'fs'
 
 
 const app = express();
