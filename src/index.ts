@@ -106,13 +106,23 @@ app.get('/getallbooks', async (req, res) => {
 
 app.get('/getbooks/query', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  var parameters : any = {};
-  if(req.query.authors !== ''&&undefined&&null){
+  console.log(req.query,"lllllllllllllll")
+  if(Object.keys(req.query).length === 0){
+    res.send({ "res": "No details entered" });
+  }else{
+    var parameters : any = {};
+  if(req.query.authors !== ''||undefined||null){
     parameters['authors'] = req.query.authors
   }
-  if(req.query.isbn !== ''&&undefined&&null){
+  if(req.query.isbn !== ''||undefined||null){
     let ISBN = (req.query.isbn as string).replace(/(\d{4})(?=\d)/g, "$1-")
     parameters['isbn'] = ISBN;
+  }
+  if(parameters.authors===undefined||''){
+    delete parameters.authors
+  }
+  if(parameters.isbn===undefined||''){
+    delete parameters.authors
   }
   var result: any = await Books.find(parameters)
   const objects = result.map((book: { title: any; isbn: any; authors: any; description: any; __v: any; }) => {
@@ -124,6 +134,7 @@ app.get('/getbooks/query', async (req, res) => {
   const csv = json2csv.parse(jsonData);
   // fs.writeFileSync(__dirname+`/output/${req.query.authors||req.query.email||req.query.isbn}.csv`, csv);
   res.send({ "res": jsonData });
+  }
 });
 
 app.post('/insert', async (req: any, res: any) => {
