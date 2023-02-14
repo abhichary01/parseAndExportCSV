@@ -4,7 +4,6 @@ export default class Knight{
     private x: number;
     private y: number;
     private possibleMoves: Array<[number, number]>;
-  static Knight: any;
 
     constructor(x: number, y: number){
         this.x = x;
@@ -12,7 +11,7 @@ export default class Knight{
         this.possibleMoves = [];
     }
     private isValidMove(x: number, y: number): boolean{
-        return x >= 0 && y >= 0 && x < ChessBoard && y < ChessBoard;
+        return x >= 1 && y >= 1 && x <= ChessBoard && y <= ChessBoard;
     }
 
     public findPossibleMoves(): Array<[number, number]>{
